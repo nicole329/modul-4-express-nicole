@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "username": "maxdev",
+    "fullname": "Max Mustermann",
+    "profileDescription": "Frontend Entwickler"
+  },
+  {
+    "id": 1,
+    "username": "annaweb",
+    "fullname": "Anna Weber",
+    "profileDescription": "UI Designerin"
+  },
+  {
+    "id": 2,
+    "username": "tomcode",
+    "fullname": "Tom Schneider",
+    "profileDescription": "Backend Entwickler"
+  },
+  {
+    "id": 3,
+    "username": "lisadev",
+    "fullname": "Lisa Müller",
+    "profileDescription": "React Entwicklerin"
+  },
+  {
+    "id": 4,
+    "username": "janit",
+    "fullname": "Jan Becker",
+    "profileDescription": "Fullstack Entwickler"
+  }
+]
