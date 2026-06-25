@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import users from "../data/users.json";
 import crypto from "crypto";
 import tweetRouter from "./routes/tweet.routes";
+import { errorHandler } from "./middlewares/error.middleware";
 
 const app = express();
 const PORT = 3000;
@@ -122,7 +123,7 @@ app.post("/auth/logout", (req: Request, res: Response) => {
   });
 });
 
-// Middleware
+// Auth Middleware
 function checkAuth(
   req: AuthRequest,
   res: Response,
@@ -142,6 +143,9 @@ function checkAuth(
 
   next();
 }
+
+// Error Middleware
+app.use(errorHandler);
 
 // Server starten
 app.listen(PORT, () => {
