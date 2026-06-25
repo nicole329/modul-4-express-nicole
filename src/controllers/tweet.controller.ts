@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import {
   getAllTweets,
@@ -18,8 +18,10 @@ export function getTweets(
 
 export function getTweet(
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) {
+  try {
   const id = Number(req.params.id);
 
   const tweet = getTweetById(id);
@@ -31,24 +33,42 @@ export function getTweet(
   }
 
   res.json(tweet);
+} catch (error) {
+  next(error);
+}
 }
 
 export function postTweet(
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ) {
+  try {     
+  const { text } = req.body;
+
+  if (!text || text.trim() === "") {
+    return res.status(400).json({
+      error: "Text is required",
+    });
+  }
+
   const tweet = createTweet(
-    req.body.text,
+    text,
     "alice"
   );
 
   res.status(201).json(tweet);
+} catch (error) {
+  next(error);
+}
 }
 
 export function removeTweet(
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction  
 ) {
+  try { 
   const success = deleteTweet(
     Number(req.params.id)
   );
@@ -62,4 +82,7 @@ export function removeTweet(
   res.json({
     success: true,
   });
+} catch (error) {
+  next(error);
+}
 }
